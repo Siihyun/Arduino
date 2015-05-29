@@ -42,12 +42,12 @@ size_t ConsoleClass::write(uint8_t c) {
   if (autoFlush) {
     uint8_t tmp[] = { 'P', c };
     bridge.transfer(tmp, 2);
-    return 1;
   } else {
     outBuffer[outBuffered++] = c;
     if (outBuffered == outBufferSize)
       flush();
   }
+  return 1;
 }
 
 size_t ConsoleClass::write(const uint8_t *buff, size_t size) {
@@ -60,12 +60,14 @@ size_t ConsoleClass::write(const uint8_t *buff, size_t size) {
     delete[] tmp;
     return size;
   } else {
+    size_t res = size;
     while (size > 0) {
       outBuffer[outBuffered++] = *buff++;
       size--;
       if (outBuffered == outBufferSize)
         flush();
     }
+    return res;
   }
 }
 

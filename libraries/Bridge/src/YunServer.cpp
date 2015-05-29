@@ -20,14 +20,14 @@
 #include <YunClient.h>
 
 YunServer::YunServer(uint16_t _p, BridgeClass &_b) :
-  bridge(_b), port(_p), listening(false), useLocalhost(false) {
+  port(_p), listening(false), useLocalhost(false), bridge(_b) {
 }
 
 void YunServer::begin() {
   uint8_t tmp[] = {
     'N',
-    (port >> 8) & 0xFF,
-    port & 0xFF
+    (uint8_t)((port >> 8) & 0xFF),
+    (uint8_t)( port       & 0xFF)
   };
   uint8_t res[1];
   String address = F("127.0.0.1");

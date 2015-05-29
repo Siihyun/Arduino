@@ -18,7 +18,7 @@
 
 #include <YunClient.h>
 
-YunClient::YunClient(int _h, BridgeClass &_b) :
+YunClient::YunClient(uint8_t _h, BridgeClass &_b) :
   bridge(_b), handle(_h), opened(true), buffered(0) {
 }
 
@@ -71,7 +71,7 @@ int YunClient::read() {
 }
 
 int YunClient::read(uint8_t *buff, size_t size) {
-  int readed = 0;
+  uint16_t readed = 0;
   do {
     if (buffered == 0) {
       doBuffer();
@@ -136,8 +136,8 @@ int YunClient::connect(IPAddress ip, uint16_t port) {
 int YunClient::connect(const char *host, uint16_t port) {
   uint8_t tmp[] = {
     'C',
-    (port >> 8) & 0xFF,
-    port & 0xFF
+    (uint8_t)((port >> 8) & 0xFF),
+    (uint8_t)( port       & 0xFF)
   };
   uint8_t res[1];
   int l = bridge.transfer(tmp, 3, (const uint8_t *)host, strlen(host), res, 1);

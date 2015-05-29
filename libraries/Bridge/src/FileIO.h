@@ -59,13 +59,11 @@ class File : public Stream {
     static const int BUFFER_SIZE = 64;
     uint8_t buffer[BUFFER_SIZE];
 
-
   private:
-    BridgeClass &bridge;
     String filename;
     uint8_t mode;
     uint8_t handle;
-
+    BridgeClass &bridge;
 };
 
 class FileSystemClass {

@@ -25,7 +25,7 @@
 class YunClient : public Client {
   public:
     // Constructor with a user provided BridgeClass instance
-    YunClient(int _h, BridgeClass &_b = Bridge);
+    YunClient(uint8_t _h, BridgeClass &_b = Bridge);
     YunClient(BridgeClass &_b = Bridge);
     ~YunClient();
 
@@ -55,7 +55,7 @@ class YunClient : public Client {
 
   private:
     BridgeClass &bridge;
-    unsigned int handle;
+    uint8_t handle;
     boolean opened;
 
   private:
