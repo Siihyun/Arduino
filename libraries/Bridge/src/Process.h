@@ -50,8 +50,8 @@ class Process : public Stream {
     int peek();
     // (write to process stdin)
     size_t write(uint8_t);
+    size_t write(const uint8_t *buffer, size_t size);
     void flush();
-    // TODO: add optimized function for block write
 
   private:
     BridgeClass &bridge;

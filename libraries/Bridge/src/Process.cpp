@@ -28,6 +28,12 @@ size_t Process::write(uint8_t c) {
   return 1;
 }
 
+size_t Process::write(const uint8_t *buffer, size_t size) {
+  uint8_t cmd[] = {'I', handle};
+  bridge.transfer(cmd, 2, buffer, size, NULL, 0);
+  return size;
+}
+
 void Process::flush() {
 }
 
